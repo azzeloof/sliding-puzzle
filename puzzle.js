@@ -22,6 +22,16 @@ const d = Math.floor(Math.sqrt(n));
 const tx = w/d;
 const ty = h/d;
 
+const shuffleArray = array => {
+    //https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
 tiles = [
     {value: "A", color: "#67cb62"},
     {value: "T", color: "#f48362"},
@@ -29,11 +39,12 @@ tiles = [
     {value: "M", color: "#c79fc7"},
     {value: "I", color: "#628cff"},
     {value: "C", color: "#d1d3d4"},
-    {value: "", color: "#FFFFFF"},
-    {value: "", color: "#FFFFFF"},
+    {value: "", color: "#ABABAB"},
+    {value: "", color: "#ABABAB"},
     {value: null, color: "#000000"},
-].sort((a, b) => 0.5 - Math.random());
-//https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+]
+
+shuffleArray(tiles);
 
 function getLoc(index) {
     var row = Math.floor(index/d);
@@ -46,17 +57,20 @@ function getInd(row, col) {
 }
 
 function draw(tile, index) {
-    let row, col;
-    [row, col] = getLoc(index);
-    ctx.fillStyle = tile.color;
-    ctx.fillRect(col*tx, row*ty, tx, ty);
-    ctx.fillStyle = "#000000";
-    ctx.lineWidth = 5;
-    ctx.strokeRect(col*tx, row*ty, tx, ty)
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.font = "bold 48px sans-serif";
-    ctx.fillText(tile.value, (col+0.5)*tx, (row+0.5)*ty);
+    if (tile.value != null) {
+        let row, col;
+        [row, col] = getLoc(index);
+        ctx.fillStyle = tile.color;
+        ctx.fillRect(col*tx, row*ty, tx, ty);
+        ctx.fillStyle = "#000000";
+        ctx.lineWidth = 5;
+        ctx.strokeRect(col*tx, row*ty, tx, ty)
+    
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.font = "bold 48px sans-serif";
+        ctx.fillText(tile.value, (col+0.5)*tx, (row+0.5)*ty);
+    }
 }
 
 function drawBoard() {
