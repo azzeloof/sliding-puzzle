@@ -67,18 +67,21 @@ function draw(tile, index) {
         ctx.fillStyle = tile.color;
         ctx.fillRect(col*tx, row*ty, tx, ty);
         ctx.fillStyle = "#000000";
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 8;
         ctx.strokeRect(col*tx, row*ty, tx, ty)
     
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.font = "bold 48px sans-serif";
+        ctx.font = "bold 52px sans-serif";
         ctx.fillText(tile.value, (col+0.5)*tx, (row+0.5)*ty);
     }
 }
 
 function drawBoard() {
     ctx.clearRect(0, 0, w, h);
+    //ctx.fillStyle = "#000000";
+    //ctx.lineWidth = 81;
+    //ctx.strokeRect(0, 0, w, h)
     for (let i=0; i<n; i++) {
         draw(tiles[i], i);
     }
