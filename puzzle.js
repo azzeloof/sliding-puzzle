@@ -45,7 +45,7 @@ tiles = [
     {value: "C", color: "#d1d3d4"},
     {value: "", color: "#ABABAB"},
     {value: "", color: "#ABABAB"},
-    {value: null, color: "#000000"},
+    {value: null, color: "#FFFFFF"},
 ]
 
 shuffleArray(tiles);
@@ -61,15 +61,14 @@ function getInd(row, col) {
 }
 
 function draw(tile, index) {
+    let row, col;
+    [row, col] = getLoc(index);
+    ctx.fillStyle = tile.color;
+    ctx.fillRect(col*tx, row*ty, tx, ty);
+    ctx.fillStyle = "#000000";
+    ctx.lineWidth = 8;
+    ctx.strokeRect(col*tx, row*ty, tx, ty)
     if (tile.value != null) {
-        let row, col;
-        [row, col] = getLoc(index);
-        ctx.fillStyle = tile.color;
-        ctx.fillRect(col*tx, row*ty, tx, ty);
-        ctx.fillStyle = "#000000";
-        ctx.lineWidth = 8;
-        ctx.strokeRect(col*tx, row*ty, tx, ty)
-    
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.font = "bold 52px sans-serif";
@@ -79,9 +78,6 @@ function draw(tile, index) {
 
 function drawBoard() {
     ctx.clearRect(0, 0, w, h);
-    //ctx.fillStyle = "#000000";
-    //ctx.lineWidth = 81;
-    //ctx.strokeRect(0, 0, w, h)
     for (let i=0; i<n; i++) {
         draw(tiles[i], i);
     }
