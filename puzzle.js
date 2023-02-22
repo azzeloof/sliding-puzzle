@@ -1,15 +1,26 @@
 var canvas = document.getElementById("puzzle");
+
+// https://web.dev/canvas-hidipi/
+var dpr = window.devicePixelRatio || 1;
+var rect = canvas.getBoundingClientRect();
+canvas.width = rect.width * dpr;
+canvas.height = rect.height * dpr;
+
 var ctx = canvas.getContext("2d");
+ctx.scale(dpr, dpr);
 
 var canvasTop = canvas.offsetTop + canvas.clientTop;
 var canvasLeft = canvas.offsetLeft + canvas.clientLeft;
 
-const w = 300;
-const h = 300;
+canvas.style.width = rect.width + 'px';
+canvas.style.height = rect.height + 'px';
+
+const w = rect.width;
+const h = rect.height;
 const n = 9;
-const d = 3;
-const tx = 100;
-const ty = 100;
+const d = Math.floor(Math.sqrt(n));
+const tx = w/d;
+const ty = h/d;
 
 tiles = [
     {value: "A", color: "#67cb62"},
