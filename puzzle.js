@@ -1,3 +1,7 @@
+// sliding puzzle
+// Adam Zeloof
+// 2/21/2023
+
 var canvas = document.getElementById("puzzle");
 
 // https://web.dev/canvas-hidipi/
