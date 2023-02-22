@@ -16,6 +16,7 @@ tiles = [
     {value: "C", color: "#00FF00"},
     {value: "", color: "#00FF00"},
     {value: "", color: "#00FF00"},
+    {value: null, color: "#000000"},
 ];
 
 function draw(tile, index) {
@@ -23,7 +24,7 @@ function draw(tile, index) {
     var col = index % Math.floor(Math.sqrt(n));
     console.log(row, col);
     ctx.fillStyle = tile.color;
-    ctx.fillRect(0, 0, 100, 100);
+    ctx.fillRect(col*tx, row*tx, (col+1)*tx, (row+1)*ty);
 }
 
 for (let i=0; i<n; i++) {
