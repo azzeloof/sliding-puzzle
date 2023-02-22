@@ -40,6 +40,7 @@ function draw(tile, index) {
     ctx.fillStyle = tile.color;
     ctx.fillRect(col*tx, row*ty, tx, ty);
     ctx.fillStyle = "#000000";
+    ctx.lineWidth = 5;
     ctx.strokeRect(col*tx, row*ty, tx, ty)
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
